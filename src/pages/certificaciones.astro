@@ -2,64 +2,134 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const certs = [
-  {
-    title: "Técnico en Administración de Empresas",
-    org: "Institución / Escuela",
-    year: "2023",
-    img: "/images/certs/tecnicatura.jpeg",
-  },
-  {
-    title: "Diplomatura en Metodologías Ágiles",
-    org: "Institución",
-    year: "2023",
-    img: "/images/certs/diplo-agiles.jpeg",
-  },
-  {
-    title: "Consultor de empresas PyME",
-    org: "Universidad Nacional de Cordoba - Argentina",
-    year: "2024",
-    img: "/images/certs/certificado-lazos.jpeg",
-  },
-  {
-    title: "Certificación en Gestión de Proyectos",
-    org: "Coursera-Google",
-    year: "2023",
-    img: "/images/certs/gestion-proyecto.jpeg",
-  },   
-  {
-    title: "Certificación Scrum Master",
-    org: "Kinetic Corp",
-    year: "2023",
-    img: "/images/certs/scrum.jpeg",    
-  },  
-  {
-    title: "Certificación Phyton",
-    org: "SoloLearn",
-    year: "2023",
-    img: "/images/certs/python.jpeg",    
-  },   
-  {
-    title: "Certificación SQL",
-    org: "SoloLearn",
-    year: "2023",
-    img: "/images/certs/sql.jpeg",    
-  },   
+    {
+        title: "Técnico en Administración de Empresas",
+        org: "Institución / Escuela",
+        year: "2023",
+        img: "/images/certs/tecnicatura.jpeg",
+    },
+    {
+        title: "Diplomatura en Metodologías Ágiles",
+        org: "Institución",
+        year: "2023",
+        img: "/images/certs/diplo-agiles.jpeg",
+    },
+    {
+        title: "Consultor de empresas PyME",
+        org: "Universidad Nacional de Cordoba - Argentina",
+        year: "2024",
+        img: "/images/certs/certificado-lazos.jpeg",
+    },
+    {
+        title: "Certificación en Gestión de Proyectos",
+        org: "Coursera-Google",
+        year: "2023",
+        img: "/images/certs/gestion-proyecto.jpeg",
+    },
+    {
+        title: "Certificación Scrum Master",
+        org: "Kinetic Corp",
+        year: "2023",
+        img: "/images/certs/scrum.jpeg",
+    },
+    {
+        title: "Certificación Phyton",
+        org: "SoloLearn",
+        year: "2023",
+        img: "/images/certs/python.jpeg",
+    },
+    {
+        title: "Certificación SQL",
+        org: "SoloLearn",
+        year: "2023",
+        img: "/images/certs/sql.jpeg",
+    },
 ];
 ---
 
-<BaseLayout title="Certificaciones — Emi" description="Certificaciones, diplomas y formación.">
-  <h1 style="margin-top:28px;">Certificaciones</h1>
-  <p style="max-width:760px;">
-    Formación y certificaciones relevantes para consultoría empresarial, producto digital y ejecución.
-  </p>
+<BaseLayout
+    title="Certificaciones — Emi"
+    description="Certificaciones, diplomas y formación."
+>
+    <h1 style="margin-top:28px;">Certificaciones</h1>
+    <p style="max-width:760px;">
+        Formación y certificaciones relevantes para consultoría empresarial,
+        producto digital y ejecución.
+    </p>
 
-  <div class="grid">
-    {certs.map((c) => (
-      <div class="card">
-        <img src={c.img} alt={c.title} style="width:100%;border-radius:14px;border:1px solid var(--border);margin-bottom:12px;" />
-        <h3 style="margin:0 0 6px;">{c.title}</h3>
-        <p style="margin:0;">{c.org} · {c.year}</p>
-      </div>
-    ))}
-  </div>
+    <div class="grid">
+        {
+            certs.map((c) => (
+                <div class="card">
+                    <button
+                        type="button"
+                        data-open-img
+                        data-src={c.img}
+                        data-alt={c.title}
+                        style="all:unset;cursor:pointer;display:block;"
+                    >
+                        <img
+                            src={c.img}
+                            alt={c.title}
+                            style="width:100%;border-radius:14px;border:1px solid var(--border);margin-bottom:12px;"
+                        />
+                    </button>
+
+                    <h3 style="margin:0 0 6px;">{c.title}</h3>
+                    <p style="margin:0;">
+                        {c.org} · {c.year}
+                    </p>
+                </div>
+            ))
+        }
+    </div>
+
+    <dialog id="imgModal" style="border:none;background:transparent;padding:0;">
+        <div style="max-width:min(980px, 92vw); margin:0 auto;">
+            <div
+                style="display:flex;justify-content:flex-end;margin-bottom:10px;"
+            >
+                <button
+                    id="closeModal"
+                    class="btn"
+                    type="button"
+                    style="cursor:pointer;"
+                >
+                    Cerrar
+                </button>
+            </div>
+
+            <img
+                id="modalImg"
+                src=""
+                alt=""
+                style="width:100%;border-radius:18px;border:1px solid var(--border);background:rgba(17,26,46,.65);"
+            />
+        </div>
+    </dialog>
+
+    <script is:inline>
+        const dlg = document.getElementById("imgModal");
+        const modalImg = document.getElementById("modalImg");
+        const closeBtn = document.getElementById("closeModal");
+        if (!dlg || !modalImg || !closeBtn) console.warn("Modal no encontrado");
+
+        // abrir
+        document.querySelectorAll("[data-open-img]").forEach((el) => {
+            el.addEventListener("click", () => {
+                const src = el.getAttribute("data-src");
+                const alt = el.getAttribute("data-alt") || "";
+                modalImg.src = src;
+                modalImg.alt = alt;
+                dlg.showModal();
+            });
+        });
+
+        // cerrar
+        closeBtn.addEventListener("click", () => dlg.close());
+        dlg.addEventListener("click", (e) => {
+            // click fuera de la imagen cierra
+            if (e.target === dlg) dlg.close();
+        });
+    </script>
 </BaseLayout>
