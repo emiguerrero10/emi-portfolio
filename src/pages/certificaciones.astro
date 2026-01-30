@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const certs = [
+  {
+    title: "Técnico en Administración de Empresas",
+    org: "Institución / Escuela",
+    year: "2023",
+    img: "/images/certs/tecnicatura.jpeg",
+  },
+  {
+    title: "Diplomatura en Metodologías Ágiles",
+    org: "Institución",
+    year: "2023",
+    img: "/images/certs/diplo-agiles.jpeg",
+  },
+  {
+    title: "Consultor de empresas PyME",
+    org: "Universidad Nacional de Cordoba - Argentina",
+    year: "2024",
+    img: "/images/certs/certificado-lazos.jpeg",
+  },
+  {
+    title: "Certificación en Gestión de Proyectos",
+    org: "Coursera-Google",
+    year: "2023",
+    img: "/images/certs/gestion-proyecto.jpeg",
+  },   
+  {
+    title: "Certificación Scrum Master",
+    org: "Kinetic Corp",
+    year: "2023",
+    img: "/images/certs/scrum.jpeg",    
+  },  
+  {
+    title: "Certificación Phyton",
+    org: "SoloLearn",
+    year: "2023",
+    img: "/images/certs/python.jpeg",    
+  },   
+  {
+    title: "Certificación SQL",
+    org: "SoloLearn",
+    year: "2023",
+    img: "/images/certs/sql.jpeg",    
+  },   
+];
+---
+
+<BaseLayout title="Certificaciones — Emi" description="Certificaciones, diplomas y formación.">
+  <h1 style="margin-top:28px;">Certificaciones</h1>
+  <p style="max-width:760px;">
+    Formación y certificaciones relevantes para consultoría empresarial, producto digital y ejecución.
+  </p>
+
+  <div class="grid">
+    {certs.map((c) => (
+      <div class="card">
+        <img src={c.img} alt={c.title} style="width:100%;border-radius:14px;border:1px solid var(--border);margin-bottom:12px;" />
+        <h3 style="margin:0 0 6px;">{c.title}</h3>
+        <p style="margin:0;">{c.org} · {c.year}</p>
+      </div>
+    ))}
+  </div>
+</BaseLayout>
