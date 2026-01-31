@@ -3,24 +3,57 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Trattor — Caso" description="Caso de estudio Trattor.">
-  <h1 style="margin-top:28px;">Trattor</h1>
+  <div class="case-head" style="margin-top:28px;">
+    <div class="logo-ring" aria-hidden="true">
+      <div class="logo-inner">
+        <img
+          src="/images/logo-trattor.png"
+          alt="Trattor"
+          class="case-logo"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+  <h1 style="margin-top:12px;">Trattor</h1>
   <p>
-    Startup fundada y desarrollada por mí. Diseñada
-    para escalar operaciones locales y regionales. Actualmente en etapa privada de
-    desarrollo.
+    Startup fundada y desarrollada por mí. Diseñada para escalar operaciones
+    locales y regionales. Actualmente en etapa privada de desarrollo.
   </p>
 
   <div class="grid">
     <div class="card">
       <h3 style="margin-top:0;">Stack</h3>
-      <p>
-        Node.js · PostgreSQL · Vercel · DigitalOcean · Nginx · Socket.IO ·
-        Mercado Pago
-      </p>
+      <div class="kpis" style="margin-top:10px;">
+        <span class="kpi">Next.js / Astro</span>
+        <span class="kpi">HTML · CSS · JS</span>
+        <span class="kpi">Node.js</span>
+        <span class="kpi">Express</span>
+        <span class="kpi">PostgreSQL</span>
+        <span class="kpi">Socket.IO</span>
+        <span class="kpi">Mercado Pago</span>
+        <span class="kpi">Vercel</span>
+        <span class="kpi">DigitalOcean</span>
+        <span class="kpi">Nginx</span>
+        <span class="kpi">PM2</span>
+      </div>
     </div>
-    <div class="card" style="grid-column: span 12;">
+    <div class="card">
       <h3 style="margin-top:0;">Mi rol</h3>
-      <p>Founder: diseño de producto + arquitectura + ejecución end-to-end.</p>
+      <p style="margin:0 0 10px;">
+        Founder-builder: definí la visión de producto, diseñé la experiencia
+        end-to-end y construí la arquitectura completa.
+      </p>
+      <div class="kpis">
+        <span class="kpi">Producto & estrategia</span>
+        <span class="kpi">UX/UI & flows</span>
+        <span class="kpi">Back-end (APIs)</span>
+        <span class="kpi">DB & modelos</span>
+        <span class="kpi">Pagos & integraciones</span>
+        <span class="kpi">Tiempo real</span>
+        <span class="kpi">DevOps & deploy</span>
+      </div>
     </div>
   </div>
 </BaseLayout>
