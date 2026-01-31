@@ -1,10 +1,28 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const shots = [
+  { src: "/images/nutri-1.jpg", alt: "Alimenta tu ser — Hero y CTAs" },
+  { src: "/images/nutri-2.jpg", alt: "Alimenta tu ser — Modal de receta" },
+  { src: "/images/nutri-3.jpg", alt: "Alimenta tu ser — Lead magnet (ebook)" },
+];
 ---
 
-<BaseLayout title="Alimenta tu ser — Caso" description="Caso de estudio Alimenta tu ser.">
+<BaseLayout
+  title="Alimenta tu ser — Caso"
+  description="Caso de estudio Alimenta tu ser."
+>
   <h1 style="margin-top:28px;">Alimenta tu ser</h1>
-  <p>Sitio orientado a conversión para profesional: CTAs, contenido y lead magnet.</p>
+  <p>
+    Proyecto digital completo para profesional independiente del área salud.
+    Diseño de marca, sitio web orientado a conversión, estrategia SEO y
+    generación de leads. Incluye arquitectura web, copywriting comercial,
+    optimización de performance y estructura de contenidos para posicionamiento
+    orgánico.
+  </p>
+  <div class="btns" style="margin-top:14px;">
+    <a class="btn primary" href="https://www.alimenta-tu-ser.com/" target="_blank" rel="noreferrer">Abrir sitio</a>
+  </div>
 
   <div class="grid">
     <div class="card">
@@ -16,4 +34,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <p>Landing + WhatsApp/Agenda + Ebook + Recetas (contenido base SEO).</p>
     </div>
   </div>
+
+  <section class="card" style="margin-top:18px;">
+    <h2 style="margin-top:0;">Capturas</h2>
+    <p style="max-width:760px;">Algunas pantallas clave (conversión, contenido y lead magnet).</p>
+
+    <div class="carousel" aria-label="Carrusel de capturas Alimenta tu ser">
+      {shots.map((s) => (
+        <article class="slide">
+          <img src={s.src} alt={s.alt} />
+        </article>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

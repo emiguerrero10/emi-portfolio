@@ -667,3 +667,21 @@ section {
     flex-basis: 92%;
   }
 }
+
+/* Caso: capturas de proyectos (slides más grandes) */
+.carousel .slide{
+  flex: 0 0 420px;
+}
+.carousel .slide img{
+  height: 240px;
+  object-fit: cover;
+}
+
+@media (max-width: 860px){
+  .carousel .slide{
+    flex: 0 0 84vw;
+  }
+  .carousel .slide img{
+    height: 220px;
+  }
+}
