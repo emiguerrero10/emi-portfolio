@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   title="Emi — Portfolio"
   description="Founder-builder especializado en marketplaces y e-commerce. Portfolio y casos de estudio."
 >
-  <section class="hero" style="display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;">
+  <section class="hero hero-grid">
   <div>
     <span class="badge">Consultor empresarial · Founder-builder · Marketplaces</span>
 
@@ -26,13 +26,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </div>
 
-  <div>
-    <img
-      src="/images/lazos-1.jpeg"
-      alt="Emi presentando una consultoría empresarial"
-      style="width:100%;border-radius:18px;border:1px solid var(--border);"
-    />
-  </div>
+  <div class="hero-media">
+  <img
+    src="/images/lazos-1.jpeg"
+    alt="Emi presentando una consultoría empresarial"
+    class="hero-img"
+  />
+</div>
 </section>
 
 

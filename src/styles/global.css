@@ -97,3 +97,47 @@ footer{ margin:40px 0 10px; color:var(--muted); font-size:14px; }
 .slide img, .card img { transition: transform .18s ease; }
 .card button:hover img { transform: scale(1.01); }
 .slide button:hover img { transform: scale(1.03); }
+
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:36px;
+  align-items:center;
+}
+
+.hero-media{
+  width:100%;
+}
+
+.hero-img{
+  width:100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius:18px;
+  border:1px solid var(--border);
+}
+
+/* Mobile: 1 columna + foto grande */
+@media (max-width: 860px){
+  .hero-grid{
+    grid-template-columns: 1fr;
+    gap:18px;
+  }
+  .hero-img{
+    height: 360px;
+  }
+}
+
+/* Mobile chico */
+@media (max-width: 420px){
+  .hero-img{
+    height: 300px;
+  }
+}
+@media (max-width: 860px){
+  .hero-grid { grid-template-columns:1fr; }
+  .hero-media { order: -1; }
+}
+section {
+  margin-bottom: 48px;
+}
