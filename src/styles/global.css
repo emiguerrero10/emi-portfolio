@@ -351,24 +351,6 @@ footer {
   transition: opacity .55s ease, transform .8s ease;
 }
 
-.hero-img--contain{
-  object-fit: contain;
-  object-position: center;
-  background: rgba(17,26,46,.55);
-  padding: 12px;
-}
-
-.hero-carousel::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background: linear-gradient(90deg,
-    rgba(11,18,32,.55) 0%,
-    rgba(11,18,32,.18) 35%,
-    rgba(11,18,32,.0) 70%);
-}
-
 .hero-img.is-active {
   opacity: 1;
   transform: scale(1);
