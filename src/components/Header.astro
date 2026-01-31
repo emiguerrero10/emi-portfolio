@@ -5,7 +5,13 @@
   </a>
 
   <!-- Botón menú: solo visible en mobile -->
-  <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+    aria-controls="navMenu"
+  >
     <span class="nav-toggle-bars" aria-hidden="true"></span>
   </button>
 
@@ -17,32 +23,36 @@
   </div>
 
   <script is:inline>
-    const nav = document.querySelector('[data-nav]');
-    const btn = nav?.querySelector('.nav-toggle');
-    const menu = nav?.querySelector('[data-nav-links]');
+    const nav = document.querySelector("[data-nav]");
+    const btn = nav?.querySelector(".nav-toggle");
+    const menu = nav?.querySelector("[data-nav-links]");
 
     if (nav && btn && menu) {
       const close = () => {
-        nav.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+        nav.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
       };
 
-      btn.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      btn.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
       });
 
       // Cierra al click en un link (mobile)
-      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+      menu
+        .querySelectorAll("a")
+        .forEach((a) => a.addEventListener("click", close));
 
       // Cierra al tocar fuera
-      document.addEventListener('click', (e) => {
+      document.addEventListener("click", (e) => {
+        const isOpen = nav.classList.contains("open");
+        if (!isOpen) return;
         if (!nav.contains(e.target)) close();
       });
 
       // Cierra con Escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') close();
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
       });
     }
   </script>
