@@ -18,8 +18,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </h1>
 
       <p>
-        Soy Emilio, consultor empresarial y fundador de una startup en proceso. Diseño
-        estrategia, modelo de negocio y arquitectura técnica. Uso IA como
+        Soy Emilio, consultor empresarial y fundador de una startup en proceso.
+        Diseño estrategia, modelo de negocio y arquitectura técnica. Uso IA como
         copiloto para acelerar ejecución sin perder control en decisiones
         críticas.
       </p>
@@ -31,12 +31,43 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="hero-media">
-      <img
-        src="/images/lazos-1.jpeg"
-        alt="Emi presentando una consultoría empresarial"
-        class="hero-img"
-      />
+      <div class="hero-carousel" data-hero-carousel>
+        <img
+          src="/images/lazos-1.jpeg"
+          alt="Emi presentando una consultoría empresarial"
+          class="hero-img is-active"
+        />
+        <img
+          src="/images/lazos-2.jpeg"
+          alt="Emi presentando una consultoría empresarial (2)"
+          class="hero-img"
+        />
+      </div>
     </div>
+
+    <script is:inline>
+      (() => {
+        const root = document.querySelector("[data-hero-carousel]");
+        if (!root) return;
+
+        const slides = Array.from(root.querySelectorAll("img"));
+        if (slides.length <= 1) return;
+
+        let i = 0;
+        const prefersReduced =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Si el usuario prefiere menos animación, no rotamos
+        if (prefersReduced) return;
+
+        setInterval(() => {
+          slides[i].classList.remove("is-active");
+          i = (i + 1) % slides.length;
+          slides[i].classList.add("is-active");
+        }, 3500);
+      })();
+    </script>
   </section>
 
   <section class="grid">
@@ -110,45 +141,52 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="btns">
-  <a
-    class="btn primary"
-    href="https://wa.me/5493516216191?text=Hola%20Emilio%2C%20te%20escribo%20por%20consultor%C3%ADa.%20%C2%BFPodemos%20coordinar%20una%20charla%20corta%3F%20Mi%20negocio%20es%3A%20____%20y%20quiero%3A%20____."
-    target="_blank"
-    rel="noreferrer"
-    data-cta="whatsapp"
-  >
-    Escribirme por WhatsApp
-  </a>
+      <a
+        class="btn primary"
+        href="https://wa.me/5493516216191?text=Hola%20Emilio%2C%20te%20escribo%20por%20consultor%C3%ADa.%20%C2%BFPodemos%20coordinar%20una%20charla%20corta%3F%20Mi%20negocio%20es%3A%20____%20y%20quiero%3A%20____."
+        target="_blank"
+        rel="noreferrer"
+        data-cta="whatsapp"
+      >
+        Escribirme por WhatsApp
+      </a>
 
-  <a class="btn" href="/contacto">Contacto</a>
-</div>
+      <a class="btn" href="/contacto">Contacto</a>
+    </div>
 
-<p class="cta-meta">
-  Respondo en <strong>24 hs</strong>. Si ya tenés web/e-commerce, compartime el link y te digo por dónde empezar.
-</p>
+    <p class="cta-meta">
+      Respondo en <strong>24 hs</strong>. Si ya tenés web/e-commerce, compartime
+      el link y te digo por dónde empezar.
+    </p>
 
-<script is:inline>
-  // Tracking liviano (no rompe si no hay analytics)
-  const wa = document.querySelector('[data-cta="whatsapp"]');
-  if (wa) {
-    wa.addEventListener("click", () => {
-      // GA4 (gtag)
-      if (typeof window !== "undefined" && typeof window.gtag === "function") {
-        window.gtag("event", "cta_click", {
-          cta: "whatsapp",
-          page: location.pathname,
+    <script is:inline>
+      // Tracking liviano (no rompe si no hay analytics)
+      const wa = document.querySelector('[data-cta="whatsapp"]');
+      if (wa) {
+        wa.addEventListener("click", () => {
+          // GA4 (gtag)
+          if (
+            typeof window !== "undefined" &&
+            typeof window.gtag === "function"
+          ) {
+            window.gtag("event", "cta_click", {
+              cta: "whatsapp",
+              page: location.pathname,
+            });
+          }
+          // GTM / dataLayer
+          if (
+            typeof window !== "undefined" &&
+            Array.isArray(window.dataLayer)
+          ) {
+            window.dataLayer.push({
+              event: "cta_click",
+              cta: "whatsapp",
+              page: location.pathname,
+            });
+          }
         });
       }
-      // GTM / dataLayer
-      if (typeof window !== "undefined" && Array.isArray(window.dataLayer)) {
-        window.dataLayer.push({
-          event: "cta_click",
-          cta: "whatsapp",
-          page: location.pathname,
-        });
-      }
-    });
-  }
-</script>
+    </script>
   </section>
 </BaseLayout>

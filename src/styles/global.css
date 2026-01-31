@@ -328,12 +328,32 @@ footer {
   width: 100%;
 }
 
-.hero-img {
+.hero-carousel {
+  position: relative;
   width: 100%;
   height: 420px;
-  object-fit: cover;
   border-radius: 18px;
   border: 1px solid var(--border);
+  overflow: hidden;
+  background: rgba(17, 26, 46, .35);
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  /* ok aunque haya overflow */
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity .55s ease, transform .8s ease;
+}
+
+.hero-img.is-active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 @media (max-width: 860px) {
@@ -346,9 +366,19 @@ footer {
     order: -1;
   }
 
-  .hero-img {
+  .hero-carousel {
     height: 360px;
   }
+}
+
+@media (max-width: 420px) {
+  .hero-carousel {
+    height: 300px;
+  }
+}
+
+.grid.grid-cards {
+  grid-template-columns: repeat(12, 1fr);
 }
 
 section {
@@ -800,49 +830,55 @@ section {
 }
 
 /* Contacto */
-.contact-list{
-  display:grid;
-  gap:10px;
+.contact-list {
+  display: grid;
+  gap: 10px;
 }
-.contact-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 14px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  background: rgba(255,255,255,.03);
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .03);
 }
-.contact-item:hover{
-  background: rgba(255,255,255,.05);
-  border-color: rgba(255,255,255,.12);
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, .05);
+  border-color: rgba(255, 255, 255, .12);
 }
-.contact-item .label{
+
+.contact-item .label {
   color: var(--muted);
   font-size: 13px;
 }
-.contact-item .value{
+
+.contact-item .value {
   color: var(--text);
   font-size: 13px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 62%;
-  text-align:right;
+  text-align: right;
 }
-.wa-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
+
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
-.wa-btn .icon{
-  display:inline-flex;
-  width:28px;
-  height:28px;
-  align-items:center;
-  justify-content:center;
-  border-radius:999px;
-  border:1px solid rgba(16,185,129,.35);
-  background: rgba(16,185,129,.12);
+
+.wa-btn .icon {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 185, 129, .35);
+  background: rgba(16, 185, 129, .12);
 }
