@@ -19,14 +19,6 @@ body{
 }
 a{ color:inherit; text-decoration:none; }
 .container{ max-width:var(--max); margin:0 auto; padding:24px; }
-.nav{
-  display:flex; align-items:center; justify-content:space-between;
-  border:1px solid var(--border); background:rgba(17,26,46,.7);
-  backdrop-filter: blur(8px);
-  padding:14px 16px; border-radius:14px;
-}
-.nav a{ color:var(--muted); margin-left:14px; }
-.nav a:hover{ color:var(--text); }
 .hero{ padding:56px 0 24px; }
 h1{ font-size:42px; line-height:1.1; margin:0 0 12px; }
 p{ color:var(--muted); line-height:1.6; }
@@ -117,27 +109,15 @@ footer{ margin:40px 0 10px; color:var(--muted); font-size:14px; }
   border:1px solid var(--border);
 }
 
-/* Mobile: 1 columna + foto grande */
 @media (max-width: 860px){
   .hero-grid{
-    grid-template-columns: 1fr;
+    grid-template-columns:1fr;
     gap:18px;
   }
-  .hero-img{
-    height: 360px;
-  }
+  .hero-media{ order:-1; }
+  .hero-img{ height:360px; }
 }
 
-/* Mobile chico */
-@media (max-width: 420px){
-  .hero-img{
-    height: 300px;
-  }
-}
-@media (max-width: 860px){
-  .hero-grid { grid-template-columns:1fr; }
-  .hero-media { order: -1; }
-}
 section {
   margin-bottom: 48px;
 }
@@ -185,7 +165,7 @@ section {
   background: rgba(255,255,255,.03);
 }
 
-/* Mobile: marca arriba + links tipo chips abajo */
+/* Mobile: marca arriba + links en grilla pareja */
 @media (max-width: 860px){
   .nav{
     flex-direction:column;
@@ -197,21 +177,37 @@ section {
     font-size:16px;
   }
 
+  /* Links en grilla pareja (2 columnas) */
   .nav-links{
     width:100%;
-    justify-content:flex-start;
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap:10px;
+    justify-content:initial;
   }
 
   .nav-links a{
+    text-align:center;
     border-color: var(--border);
     background: rgba(255,255,255,.03);
     font-size:14px;
+
+    padding:10px 10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
 }
+.brand-full{ display:inline; }
 
 .brand-short{ display:none; }
 @media (max-width: 420px){
   .brand-full{ display:none; }
   .brand-short{ display:inline; }
+}
+
+@media (max-width: 420px){
+  .nav-links{
+    grid-template-columns: 1fr;
+  }
 }
