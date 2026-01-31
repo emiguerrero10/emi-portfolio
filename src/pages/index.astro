@@ -103,9 +103,52 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       salir a mercado rápido sin perder calidad.
     </p>
 
-    <div class="btns" style="margin-top:14px;">
-      <a class="btn primary" href="/contacto">Coordinar llamada</a>
-      <a class="btn" href="/consultoria">Ver consultoría</a>
+    <div class="kpis" style="margin-top:10px;">
+      <span class="kpi">Respuesta <strong>24 hs</strong></span>
+      <span class="kpi">Diagnóstico inicial</span>
+      <span class="kpi">Roadmap por etapas</span>
     </div>
+
+    <div class="btns">
+  <a
+    class="btn primary"
+    href="https://wa.me/5493516216191?text=Hola%20Emilio%2C%20te%20escribo%20por%20consultor%C3%ADa.%20%C2%BFPodemos%20coordinar%20una%20charla%20corta%3F%20Mi%20negocio%20es%3A%20____%20y%20quiero%3A%20____."
+    target="_blank"
+    rel="noreferrer"
+    data-cta="whatsapp"
+  >
+    Escribirme por WhatsApp
+  </a>
+
+  <a class="btn" href="/contacto">Contacto</a>
+</div>
+
+<p class="cta-meta">
+  Respondo en <strong>24 hs</strong>. Si ya tenés web/e-commerce, compartime el link y te digo por dónde empezar.
+</p>
+
+<script is:inline>
+  // Tracking liviano (no rompe si no hay analytics)
+  const wa = document.querySelector('[data-cta="whatsapp"]');
+  if (wa) {
+    wa.addEventListener("click", () => {
+      // GA4 (gtag)
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "cta_click", {
+          cta: "whatsapp",
+          page: location.pathname,
+        });
+      }
+      // GTM / dataLayer
+      if (typeof window !== "undefined" && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: "cta_click",
+          cta: "whatsapp",
+          page: location.pathname,
+        });
+      }
+    });
+  }
+</script>
   </section>
 </BaseLayout>
