@@ -72,6 +72,45 @@ footer{ margin:40px 0 10px; color:var(--muted); font-size:14px; }
 .slide .body {
   padding: 14px 14px 16px;
 }
+
+/* Slide cover (casos sin imagen) */
+.cover{
+  height:200px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:6px;
+  background:
+    radial-gradient(600px 260px at 20% 0%, rgba(16,185,129,.18), transparent 60%),
+    radial-gradient(520px 260px at 90% 30%, rgba(99,102,241,.18), transparent 55%),
+    rgba(17,26,46,.65);
+  border-bottom: 1px solid var(--border);
+}
+
+.cover-badge{
+  display:inline-block;
+  width:max-content;
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:6px 10px;
+  background: rgba(255,255,255,.03);
+}
+
+.cover-title{
+  font-weight:800;
+  font-size:18px;
+  line-height:1.1;
+}
+
+.cover-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
 .kpis {
   display: flex;
   gap: 8px;
