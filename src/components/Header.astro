@@ -1,13 +1,49 @@
-<nav class="nav">
+<nav class="nav" data-nav>
   <a href="/" class="brand">
     <span class="brand-full">Emilio Andrés Guerrero</span>
-    <span class="brand-short">Emilio Andrés Guerrero</span>
+    <span class="brand-short">Emilio Guerrero</span>
   </a>
 
-  <div class="nav-links">
+  <!-- Botón menú: solo visible en mobile -->
+  <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+    <span class="nav-toggle-bars" aria-hidden="true"></span>
+  </button>
+
+  <div id="navMenu" class="nav-links" data-nav-links>
     <a href="/consultoria">Consultoría</a>
     <a href="/proyectos">Proyectos</a>
     <a href="/certificaciones">Formación</a>
     <a href="/contacto">Contacto</a>
   </div>
+
+  <script is:inline>
+    const nav = document.querySelector('[data-nav]');
+    const btn = nav?.querySelector('.nav-toggle');
+    const menu = nav?.querySelector('[data-nav-links]');
+
+    if (nav && btn && menu) {
+      const close = () => {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      };
+
+      btn.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // Cierra al click en un link (mobile)
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+
+      // Cierra al tocar fuera
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target)) close();
+      });
+
+      // Cierra con Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+    }
+  </script>
 </nav>
